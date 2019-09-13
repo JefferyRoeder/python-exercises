@@ -3,7 +3,7 @@
 # Define a function named is_two. It should accept one input and return True if the passed input is either the number or the string 2, False otherwise.
 
 def is_two(x):
-    if x == 2:
+    if x == 2 or x == '2':
         return True
     else:
         return False
@@ -19,6 +19,8 @@ def is_vowel(x):
         return False
 is_vowel('A ')
 
+
+def is_vowel(x)
 
 # 3 Define a function named is_consonant. It should return True if the passed string is a consonant, False otherwise. Use your is_vowel function to accomplish this.
 
@@ -91,3 +93,58 @@ remove_vowels("hello")
 
 # 10 Define a function named normalize_name. It should accept a string and return a valid python identifier, that is:
 
+def normalize_name(word):
+    word = word.lower().strip()
+    for w in word:
+        if w not in 'abcdefghijklmnopqrstuvwxyz1234567890_':
+            word = word.replace(w,"")
+            word = word.lower().strip()
+            word = word.replace(" ","_")
+        
+    return word
+normalize_name("% Complete")
+
+# Write a function named cumsum that accepts a list of numbers and returns a list that is the cumulative sum of the numbers in the list.
+
+def cumsum(numbers):
+    total = 0
+    result =[]
+    for number in numbers:
+        total += number
+        result.append(total)
+    return result
+cumsum([1,2,3])
+
+
+# Create a function named twelveto24. It should accept a string in the format 10:45am or 4:30pm and return a string that is the representation of the time in a 24-hour format. Bonus write a function that does the opposite.
+
+def twelveto24(time):
+    if time[-2] == 'a':
+        for t in time:
+            if t in 'am:':
+                time = time.replace(t,"")
+    else:
+        for t in time:
+            if t in 'pm:':
+                time = time.replace(t,"")
+        time = str(int(time)+1200)
+    return time
+twelveto24('8:45pm')
+
+
+# military time to regular
+
+def twentyfourto12(time):
+    minutes = time[-2:]
+    hours = int(time[:2])
+    if int(time) >= 1200 and int(time) <= 1259:
+        time = f"{hours}:{minutes}pm"
+    elif int(time) >= 0 and int(time) <= 59:
+        time = f"12:{minutes}am"
+    elif int(time) <= 1159:
+        time = f"{hours}:{minutes}am"
+    else:
+        time = f"{hours-12}:{minutes}pm"
+    
+    return time
+twentyfourto12('0430')
