@@ -20,7 +20,6 @@ def is_vowel(x):
 is_vowel('A ')
 
 
-def is_vowel(x)
 
 # 3 Define a function named is_consonant. It should return True if the passed string is a consonant, False otherwise. Use your is_vowel function to accomplish this.
 
