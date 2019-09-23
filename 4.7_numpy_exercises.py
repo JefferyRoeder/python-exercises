@@ -13,7 +13,7 @@ print(positive_numbers)
 
 #3 Even and positive numbers
 
-even_and_positive = np.logical_and.a(a > 0, a % 2 == 0)
+even_and_positive = np.logical_and(a > 0, a % 2 == 0)
 a[even_and_positive]
 
 print(even_and_positive)
@@ -28,7 +28,7 @@ print(a_plus_3_positive)
 
 #5 If you squared each number, what would the new mean and standard deviation be?
 a_squared = a**2
-print(a_squared.std()
+print(a_squared.std())
 
 #6 A common statistical operation on a dataset is centering. This means to adjust the data such that the center of the data is at 0. This is done by subtracting the mean from each data point. Center the data set.
 a_centered = a - a.mean()
