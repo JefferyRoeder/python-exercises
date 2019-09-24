@@ -175,7 +175,7 @@ c = [
     [7, 8, 9]
 ]
 c = np.array(c)
-
+print(c.flatten())
 # HINT, you'll first need to make sure that the "c" variable is a numpy array prior to using numpy array methods.
 # Exercise 1 - Find the min, max, sum, and product of c.
 c.min()
@@ -215,7 +215,7 @@ np.cos(d)
 # Exercise 3 - Find the tangent of all the numbers in d
 np.tan(d)
 # Exercise 4 - Find all the negative numbers in d
-d[d %]
+negative_numbers_d = d[d  < 0 ]
 # Exercise 5 - Find all the positive numbers in d
 positive_numbers_d = d[d > 0 ]
 # Exercise 6 - Return an array of only the unique numbers in d.
@@ -223,8 +223,8 @@ np.unique(d)
 # Exercise 7 - Determine how many unique numbers there are in d.
 len(np.unique(d))
 # Exercise 8 - Print out the shape of d.
-d.shape()
+print(d.shape)
 # Exercise 9 - Transpose and then print out the shape of d.
-np.shape(d)
+print(d.transpose())
 # Exercise 10 - Reshape d into an array of 9 x 2
 d.reshape(9,2)
