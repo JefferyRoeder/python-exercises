@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from pydataset import data
+import env
 
 mpg = data('mpg')
 mpg.head(2)
@@ -33,10 +34,18 @@ pd.merge(users,roles,left_on='role_id',right_on='id',how='inner')
 
 #3.a
 
+# def get_db_url():
+#     user = input("Username: ")
+#     password = input("Password: ")
+#     host = input("Host: ")
+#     database = input("Database: ")
+#     url = f'mysql+pymysql://{user}:{password}@{host}/{database}'
+#     return url
+
 def get_db_url():
-    user = input("Username: ")
-    password = input("Password: ")
-    host = input("Host: ")
+    user = env.user
+    password = env.password
+    host = env.host
     database = input("Database: ")
     url = f'mysql+pymysql://{user}:{password}@{host}/{database}'
     return url
@@ -65,3 +74,13 @@ employees_all.head()
 #crosstab of titles by dept
 
 pd.crosstab(employees_all.dept_name,employees_all.title,margins=True)
+
+#4. chipotle db
+
+orders = pd.read_sql("""SELECT * FROM orders""",url)
+
+orders['price'] = orders['price'].str.replace('$','').astype(float)
+
+orders.groupby('item_name').item_name.agg('count').sort_values(ascending=False).head(3)
+
+orders.groupby('item_name').price.agg('sum').sort_values(ascending=False).head(3)
