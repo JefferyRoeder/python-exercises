@@ -24,3 +24,44 @@ mpg['automatic_trans'] = mpg['trans'].str.contains('auto')
 mpg.head(3)
 
 mpg[['automatic_trans','model']].groupby('automatic_trans').agg('count')
+
+#2 
+
+pd.merge(users,roles,left_on='role_id',right_on='id',how='left')
+
+pd.merge(users,roles,left_on='role_id',right_on='id',how='inner')
+
+#3.a
+
+def get_db_url():
+    user = input("Username: ")
+    password = input("Password: ")
+    host = input("Host: ")
+    database = input("Database: ")
+    url = f'mysql+pymysql://{user}:{password}@{host}/{database}'
+    return url
+
+url = get_db_url()
+
+#3.b,c,d,e
+
+employees = pd.read_sql('SELECT * FROM employees',url)
+
+titles = pd.read_sql('SELECT * FROM titles',url)
+#3.f,g
+pd.merge(employees,titles,left_on='emp_no',right_on='emp_no',how='left')
+
+employees_titles.groupby('title').emp_no.agg('count')
+#3.h
+employees_titles.groupby('title').from_date.agg('max')
+
+#3.i
+departments_all = pd.merge(dept_emp,departments,left_on='dept_no',right_on='dept_no',how='left')
+
+employees_all = pd.merge(departments_all,employees_titles,left_on='emp_no',right_on='emp_no')
+
+employees_all.head()
+
+#crosstab of titles by dept
+
+pd.crosstab(employees_all.dept_name,employees_all.title,margins=True)
