@@ -51,3 +51,16 @@ sns.boxplot(data=swiss,y='Fertility',x='is_catholic')
 #3.c Education, examination, and Catholic
 swiss.corr().Fertility.sort_values()
 
+
+#4 bar chart showing chipotle most popular items and count of items
+
+chipotle.groupby('item_name')['quantity'].count().sort_values(ascending=False).head().plot.bar()
+
+# charting revenue of top 5 items.
+
+chipotle.groupby('item_name')['revenue'].agg('sum').sort_values(ascending=False).head().plot.bar()
+
+
+#5 sleepstudy line chart of average change in reaction time
+
+sns.lineplot(x='Days',y='Reaction',data=sleepstudy)
